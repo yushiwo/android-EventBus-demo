@@ -25,30 +25,28 @@
         android:id="@+id/btnMain2MainB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
-        android:layout_toRightOf="@+id/button1"
+        android:layout_below="@id/btnMain2MainA"
         android:text="主线程到主线程B" />
 
     <Button
         android:id="@+id/btnToSecondActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
-        android:layout_toRightOf="@+id/button2"
+        android:layout_below="@id/btnMain2MainB"
         android:text="跳到Second" />
-        <Button
+
+    <Button
         android:id="@+id/btnAsync"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/button1"
+        android:layout_below="@id/btnToSecondActivity"
         android:text="异步执行" />
 
-        <Button
-            android:id="@+id/btnNonUIThread2MainThread"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/button2"
-            android:layout_toRightOf="@+id/button4"
-            android:text="非UI线程传给主线程，可代替接口回调写法" />
+    <Button
+        android:id="@+id/btnNonUIThread2MainThread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnAsync"
+        android:text="非UI线程传给主线程，可代替接口回调写法" />
 
 </RelativeLayout>
