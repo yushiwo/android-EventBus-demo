@@ -15,15 +15,24 @@ import de.greenrobot.event.EventBus;
 
 public class MainActivity extends Activity{
     private TextView textView;
+    /** 主线程到主线程A */
     private Button btnMain2MainA;
+    /** 主线程到主线程B */
     private Button btnMain2MainB;
+    /** 跳到另一个线程 */
     private Button btnToSecondActivity;
+    /** 异步执行 */
     private Button btnAsync;
+    /** 非UI线程传给主线程 */
     private Button btnNonUIThread2MainThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        IntervalThread mIntervalThread = new IntervalThread();
+        mIntervalThread.startTimer(0, 1000);
+        
         initView();
 
 
@@ -69,7 +78,8 @@ public class MainActivity extends Activity{
     }
     public void messageFromSecondActivity(SecondActivityEvent event)
     {
-        textView.setText(event.getText());
+        //textView.setText(event.getText());  //不能直接更新text，会calledfromwrongthreadexception
+    	EventBus.getDefault().post(new SetTextAEvent(event.getText()));
     }
     
     /**
@@ -103,7 +113,7 @@ public class MainActivity extends Activity{
                  //测试SecondActivity中发送事件，MainActivity接收
                  Intent intent=new Intent(getApplicationContext(), SecondActivity.class);
                  startActivity(intent);
-                 finish();
+                 //finish();
              break;
              case R.id.btnAsync:
                  EventBus.getDefault().post(new CountDownEvent(99));

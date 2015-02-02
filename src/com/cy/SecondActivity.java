@@ -30,6 +30,7 @@ public class SecondActivity extends Activity implements View.OnClickListener {
             case R.id.button1:
 //                finish();
                 startActivity(new Intent(this,MainActivity.class));
+                finish();
                 break;
             case R.id.button2:
                 //postSticky会缓存最新的event事件，不管接收方是否消亡，载入时都会检测最新状态 
